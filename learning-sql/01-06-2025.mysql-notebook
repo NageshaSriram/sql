@@ -1,0 +1,300 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "Script",
+    "content": "-- Joins and SubQueries\n\n-- fetch tables from multiple tables\n\n-- Types\n\n-- Inner - Common rows (keyword JOIN or INNER JOIN)\n-- Right join -- common rows and unmatched wors from right table\n-- Left join -- common rows and unmatched wors from left table\n-- Natural Join -- allow system to think which is the commom column to be used on 'ON', it can be single or multiple column, \n    -- first match with common name and then check for datatype (Internally it is INNER join)\n-- Self -- join withiin same table\n-- Cross Join (carditio Product m x n) not with common column\n\n-- Joins will work only with common column \n-- Joins works faster than Sub Query because it uses indexing or primary key\n\nselect * from employees;\n\nselect * from departments;\n\nselect * from countries;\n\n\n",
+    "options": {
+        "tabSize": 4,
+        "indentSize": 4,
+        "insertSpaces": true,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": null,
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 25,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "8e388e0c-fa32-486b-9be4-159c5ff58e52"
+                    ]
+                },
+                "currentHeight": 300,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 717
+                        },
+                        "contentStart": 693,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 717,
+                            "length": 28
+                        },
+                        "contentStart": 719,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 745,
+                            "length": 26
+                        },
+                        "contentStart": 747,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 771,
+                            "length": 3
+                        },
+                        "contentStart": 770,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "7dc457f5-5c30-4a61-a256-62b6727812a2",
+                    "resultId": "8e388e0c-fa32-486b-9be4-159c5ff58e52",
+                    "rows": [
+                        {
+                            "0": "AR",
+                            "1": "Argentina",
+                            "2": 2
+                        },
+                        {
+                            "0": "AU",
+                            "1": "Australia",
+                            "2": 3
+                        },
+                        {
+                            "0": "BE",
+                            "1": "Belgium",
+                            "2": 1
+                        },
+                        {
+                            "0": "BR",
+                            "1": "Brazil",
+                            "2": 2
+                        },
+                        {
+                            "0": "CA",
+                            "1": "Canada",
+                            "2": 2
+                        },
+                        {
+                            "0": "CH",
+                            "1": "Switzerland",
+                            "2": 1
+                        },
+                        {
+                            "0": "CN",
+                            "1": "China",
+                            "2": 3
+                        },
+                        {
+                            "0": "DE",
+                            "1": "Germany",
+                            "2": 1
+                        },
+                        {
+                            "0": "DK",
+                            "1": "Denmark",
+                            "2": 1
+                        },
+                        {
+                            "0": "EG",
+                            "1": "Egypt",
+                            "2": 4
+                        },
+                        {
+                            "0": "FR",
+                            "1": "France",
+                            "2": 1
+                        },
+                        {
+                            "0": "HK",
+                            "1": "HongKong",
+                            "2": 3
+                        },
+                        {
+                            "0": "IL",
+                            "1": "Israel",
+                            "2": 4
+                        },
+                        {
+                            "0": "IN",
+                            "1": "India",
+                            "2": 3
+                        },
+                        {
+                            "0": "IT",
+                            "1": "Italy",
+                            "2": 1
+                        },
+                        {
+                            "0": "JP",
+                            "1": "Japan",
+                            "2": 3
+                        },
+                        {
+                            "0": "KW",
+                            "1": "Kuwait",
+                            "2": 4
+                        },
+                        {
+                            "0": "MX",
+                            "1": "Mexico",
+                            "2": 2
+                        },
+                        {
+                            "0": "NG",
+                            "1": "Nigeria",
+                            "2": 4
+                        },
+                        {
+                            "0": "NL",
+                            "1": "Netherlands",
+                            "2": 1
+                        },
+                        {
+                            "0": "SG",
+                            "1": "Singapore",
+                            "2": 3
+                        },
+                        {
+                            "0": "UK",
+                            "1": "United Kingdom",
+                            "2": 1
+                        },
+                        {
+                            "0": "US",
+                            "1": "United States of America",
+                            "2": 2
+                        },
+                        {
+                            "0": "ZM",
+                            "1": "Zambia",
+                            "2": 4
+                        },
+                        {
+                            "0": "ZW",
+                            "1": "Zimbabwe",
+                            "2": 4
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "country_id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "country_name",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "region_id",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 25 records retrieved in 0.453ms"
+                    },
+                    "totalRowCount": 25,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "\n\nselect * from countries;",
+                    "updatable": true,
+                    "fullTableName": "countries"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 1,
+                "end": 25,
+                "language": "mysql",
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 24
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 24,
+                            "length": 1
+                        },
+                        "contentStart": 23,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}
