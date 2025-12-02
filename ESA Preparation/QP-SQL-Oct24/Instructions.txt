@@ -1,0 +1,9 @@
+Step 1:
+First run schema_house.sql 
+Step 2:
+Now check on the left side if house db is shown in schema navigator
+Use house schema for question no 3.
+Step 3:
+Then run schema_sales.sql 
+Now check on the left side if schema_sales.sql db is shown in schema navigator
+use schema_sales.sql schema for question no 4.

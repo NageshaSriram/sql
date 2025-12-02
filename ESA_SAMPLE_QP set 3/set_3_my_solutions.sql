@@ -96,3 +96,7 @@ select e.department, d.name, count(*) as number_of_emp from employees e
 left join departments d on d.code = e.department
 group by e.department;
 
+
+-- 4a
+
+
