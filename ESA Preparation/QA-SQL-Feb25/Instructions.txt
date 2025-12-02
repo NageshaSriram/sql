@@ -1,0 +1,9 @@
+Step 1:
+First run hospital_schema.sql 
+Step 2:
+Now check on the left side if hospital_schema is shown in schema navigator
+Use hospital_schema for question no 3.
+Step 3:
+Then run sales_schema.sql 
+Now check on the left side if sales_schema.sql db is shown in schema navigator
+use sales_schema.sql schema for question no 4.
