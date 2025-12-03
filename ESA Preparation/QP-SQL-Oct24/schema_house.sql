@@ -3,6 +3,7 @@
 -- Host: localhost   
 -- ------------------------------------------------------
 -- Server version	8.0.27
+drop database if exists house;
 create database house;
 use house;
 

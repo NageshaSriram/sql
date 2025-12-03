@@ -98,5 +98,76 @@ group by e.department;
 
 
 -- 4a
+select * from customer;
+select * from track;
+select * from artist;
+select * from invoice;
 
 
+select c1.firstname from customer c1 where c1.firstname in (select c2.firstname from customer c2 where c1.customerid != c2.customerid);
+
+select * from customer where firstname = 'Mark';
+
+SELECT c1.customerid, c1.firstname, c2.customerid, c2.firstname
+FROM customer c1
+JOIN customer c2 ON c1.firstname = c2.firstname AND c1.customerid <> c2.customerid;
+
+select c.firstname, c.customerid, i.invoicedate from customer c
+JOIN invoice i on i.customerid = c.customerid order by c.firstname asc;
+
+select customerid, count(*), invoicedate from invoice group by customerid;
+
+-- 4b
+SELECT c.customerid, c.firstname, i.invoicedate,
+       LAG(i.invoicedate) OVER (PARTITION BY c.customerid ORDER BY i.invoicedate) AS prev_invoice
+FROM customer c
+JOIN invoice i ON c.customerid = i.customerid;
+
+select i.customerid, i.invoicedate, LAG(i.invoicedate) OVER (PARTITION BY i.customerid order by i.invoicedate) as previous_invoice_date;
+
+-- 4c
+select * from track;
+select * from genre;
+
+
+select g.genreid, g.name, count(*) as total_tracks  from track t 
+join genre g on g.genreid = t.genreid
+where t.unitprice > 0.9 and g.name like 's%'
+group by g.genreid;
+
+SELECT g.name, COUNT(t.trackid) AS total_tracks
+FROM track t
+JOIN genre g ON t.genreid = g.genreid
+WHERE t.unitprice > 0.9 AND g.name LIKE 's%'
+GROUP BY g.name;
+
+-- 4d
+select * from track;
+select * from invoiceline;
+select * from invoice;
+
+select i.customerid, count(DISTINCT t.albumid) as unique_albums, RANK() OVER (ORDER BY count(distinct t.albumid) desc) AS rank_customers from invoice i
+join invoiceline il on il.invoiceid = i.invoiceid
+join track t on t.trackid = il.trackid
+group by i.customerid;
+
+SELECT c.customerid, c.firstname, COUNT(DISTINCT t.albumid) AS unique_albums,
+       DENSE_RANK() OVER (ORDER BY COUNT(DISTINCT t.albumid) DESC) AS rank_customers
+FROM customer c
+JOIN invoice i ON c.customerid = i.customerid
+JOIN invoiceline il ON i.invoiceid = il.invoiceid
+JOIN track t ON il.trackid = t.trackid
+GROUP BY c.customerid, c.firstname;
+
+-- 4e
+
+-- 4f
+
+CREATE VIEW sample_view AS (
+SELECT c.customerid, i.billingcity, c.city AS customer_city,
+       COUNT(DISTINCT t.albumid) AS albums_billed
+FROM customer c
+JOIN invoice i ON c.customerid = i.customerid
+JOIN invoiceline il ON i.invoiceid = il.invoiceid
+JOIN track t ON il.trackid = t.trackid
+GROUP BY c.customerid, i.invoiceid, i.billingcity, c.city);
