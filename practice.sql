@@ -273,3 +273,57 @@ select CAST(123 as CHAR(4));
 select CASE WHEN 101 % 2 = 0 THEN 'EVEN' ELSE 'ODD' end as even_odd;
 
 select CONVERT('1001', DECIMAL) as str;
+
+select b.code, w.location from boxes b left join warehouses w on b.warehouse = w.code;
+
+select w.code, count(*) from warehouses w join boxes b on b.warehouse = w.code group by w.code;
+
+select * from boxes where warehouse = 1;
+
+select * from warehouses;
+select * from boxes;
+select w.code, count(b.code), w.capacity  from warehouses w join boxes b on b.warehouse = w.code group by w.code having count(b.code) > w.capacity;
+
+select b.code from boxes b join warehouses w on w.code = b.warehouse where w.location = 'Chicago';
+
+select b.code from boxes b where b.warehouse in (select code from warehouses where location = 'Chicago');
+
+select e.*, d.* from employees e join departments d on e.department = d.code;
+
+select e.name, e.lastname, d.name, d.budget from employees e join departments d on  d.code = e.department; 
+
+select d.name as department_name, count(e.ssn) as employee_count  from departments d join employees e on e.department = d.code group by d.code having employee_count > 2;
+
+select d.name from departments d where  (select count(*) from employees e where e.department = d.code) > 2;
+
+select * from employees e where  e.department = (select code from departments order by budget limit 1 offset 1);
+
+select d.code, count(e.ssn) as num_emps from departments d join employees e on d.code = e.department group by d.code;
+
+select e.department, count(*) from employees e group by e.department;
+
+select c.firstname from customer c join customer c1 on c1.firstname = c.firstname and c1.customerid <> c.customerid;
+
+select c.firstname, c.lastname, i.invoicedate, LAG(i.invoicedate) OVER (partition by c.customerid order by i.invoicedate) from customer c join invoice i on i.customerid = c.customerid;
+
+select g.name, count(t.trackid) as track_count from genre g join track t on t.genreid = g.genreid where t.unitprice > 0.9 and g.name like 's%' group by g.genreid;
+
+select i.customerid, count(DISTINCT t.albumid) as total_alumbs, RANK() OVER (order by count(DISTINCT t.albumid) desc) purshace_albumn_rank from invoice i 
+join invoiceline il on i.invoiceid = il.invoiceid
+join track t on t.trackid = il.trackid
+group by i.customerid
+order by total_alumbs desc;
+
+select t.composer, count(il.trackid) as total_tracks_billed from track t 
+join invoiceline il on il.trackid = t.trackid
+group by t.composer
+order by total_tracks_billed desc;
+
+create view alumb_billed_per_order as
+select i.customerid, i.billingcity, c.city as customer_city, count(distinct t.albumid) as num_albumns_billed from invoice i
+join customer c on c.customerid = i.customerid
+join invoiceline il on il.invoiceid = i.invoiceid
+join track t on t.trackid = il.trackid
+group by i.customerid, i.invoiceid, i.billingcity, c.city;
+
+

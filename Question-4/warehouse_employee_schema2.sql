@@ -1,4 +1,4 @@
-
+drop database warehouse_employees;
 create database warehouse_employees;
 use warehouse_employees;
 
